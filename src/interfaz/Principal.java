@@ -52,7 +52,7 @@ public class Principal extends javax.swing.JFrame {
 
         lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/people2 (1).jpg"))); // NOI18N
         lblImagen.setText("jLabel1");
-        jPanel1.add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 650, 410));
+        jPanel1.add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 680, 430));
 
         mnOpciones.setText("Opciones\n");
 
@@ -91,7 +91,8 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(719, 493));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
