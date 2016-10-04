@@ -6,6 +6,11 @@
 
 package interfaz;
 
+import clases.Helper;
+import clases.Persona;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aolivero11
@@ -15,9 +20,12 @@ public class Agregar extends javax.swing.JDialog {
     /**
      * Creates new form Agregar
      */
+    ArrayList<Persona> personas;
     public Agregar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        personas = new ArrayList();
+        
     }
 
     /**
@@ -53,16 +61,16 @@ public class Agregar extends javax.swing.JDialog {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Nombre:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
-        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 100, 30));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
+        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 100, 30));
 
         jLabel2.setText("Apellido:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
-        jPanel2.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 100, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        jPanel2.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 100, 30));
 
-        jLabel3.setText("Cedula");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
-        jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 100, 30));
+        jLabel3.setText("Cedula:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
+        jPanel2.add(txtCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 100, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 250, 190));
 
@@ -70,12 +78,27 @@ public class Agregar extends javax.swing.JDialog {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cmdGuardar.setText("Guardar");
+        cmdGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdGuardarActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 80, 30));
 
         cmdEliminar.setText("Eliminar");
+        cmdEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdEliminarActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 80, 30));
 
         cmdLimpiar.setText("Limpiar");
+        cmdLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLimpiarActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 80, 30));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 140, 180));
@@ -99,6 +122,11 @@ public class Agregar extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        tblTablaPersona.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTablaPersonaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblTablaPersona);
 
         jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 430, 280));
@@ -119,6 +147,65 @@ public class Agregar extends javax.swing.JDialog {
         setSize(new java.awt.Dimension(739, 650));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdGuardarActionPerformed
+    String cedula,nombre,apellido;
+    cedula=txtCedula.getText();
+    nombre=txtNombre.getText();
+    apellido=txtApellido.getText();
+    Persona p = new Persona (cedula,nombre,apellido);
+    personas.add(p);
+    Helper.LlenarTabla(tblTablaPersona, personas);
+    txtCedula.setText("");
+    txtNombre.setText("");
+    txtApellido.setText("");
+    
+    txtCedula.requestFocusInWindow();
+       
+    }//GEN-LAST:event_cmdGuardarActionPerformed
+
+    private void cmdLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLimpiarActionPerformed
+    txtCedula.setText("");
+    txtNombre.setText("");
+    txtApellido.setText("");
+    
+    txtCedula.requestFocusInWindow();
+    
+    }//GEN-LAST:event_cmdLimpiarActionPerformed
+
+    private void tblTablaPersonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTablaPersonaMouseClicked
+        int i;
+        Persona p;
+        i = tblTablaPersona.getSelectedRow();
+        p = personas.get(i);
+        txtCedula.setText(p.getCedula());
+        txtNombre.setText(p.getNombre());
+        txtApellido.setText(p.getApellido());
+        
+        
+    }//GEN-LAST:event_tblTablaPersonaMouseClicked
+
+    private void cmdEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdEliminarActionPerformed
+       int i,op;
+       
+       op =JOptionPane.showConfirmDialog(this,"¿Seguro que desea eliminar a esta persona?","Eliminar",JOptionPane.YES_NO_OPTION);
+         if (op==JOptionPane.YES_OPTION){
+      
+      i = tblTablaPersona.getSelectedRow();
+      personas.remove(i);
+      Helper.LlenarTabla(tblTablaPersona, personas);
+      txtCedula.setText("");
+      txtNombre.setText("");
+      txtApellido.setText("");
+      
+    
+      txtCedula.requestFocusInWindow();
+        
+         }       
+      
+       
+        
+    }//GEN-LAST:event_cmdEliminarActionPerformed
 
     /**
      * @param args the command line arguments

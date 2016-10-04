@@ -38,7 +38,7 @@ public class Principal extends javax.swing.JFrame {
         mnAgregar = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        mnSalir = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
 
@@ -55,6 +55,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 680, 430));
 
         mnOpciones.setText("Opciones\n");
+        mnOpciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnOpcionesActionPerformed(evt);
+            }
+        });
 
         mnAgregar.setText("Agregar\n");
         mnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -73,8 +78,13 @@ public class Principal extends javax.swing.JFrame {
         mnOpciones.add(jMenuItem3);
         mnOpciones.add(jSeparator1);
 
-        jMenuItem4.setText("jMenuItem4");
-        mnOpciones.add(jMenuItem4);
+        mnSalir.setText("Salir");
+        mnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnSalirActionPerformed(evt);
+            }
+        });
+        mnOpciones.add(mnSalir);
 
         jMenuBar1.add(mnOpciones);
 
@@ -103,6 +113,14 @@ public class Principal extends javax.swing.JFrame {
       Agregar a = new Agregar (this,true);
       a.setVisible(true);
     }//GEN-LAST:event_mnAgregarActionPerformed
+
+    private void mnOpcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnOpcionesActionPerformed
+      
+    }//GEN-LAST:event_mnOpcionesActionPerformed
+
+    private void mnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnSalirActionPerformed
+      System.exit(0);
+    }//GEN-LAST:event_mnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,11 +163,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblImagen;
     private javax.swing.JMenuItem mnAgregar;
     private javax.swing.JMenu mnOpciones;
+    private javax.swing.JMenuItem mnSalir;
     // End of variables declaration//GEN-END:variables
 }
